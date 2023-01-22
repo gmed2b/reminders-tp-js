@@ -101,6 +101,7 @@ function renderTasksList() {
 	tasksList.forEach(task => {
 		const taskTemplate = document.importNode(taskItemTemplate.content, true)
 		taskTemplate.querySelector('[data-task-id]').id = task.id
+		taskTemplate.querySelector('[data-task-id]').classList.toggle('completed', task.completedAt !== null)
 		taskTemplate.querySelector('[data-task-name]').textContent = task.name
 		taskTemplate.querySelector('[data-task-description]').textContent = task.description
 		taskTemplate.querySelector('[data-task-subject]').textContent = getSubjectName(task.subject)
@@ -113,6 +114,8 @@ function renderTasksList() {
 			tasksList = tasksList.map(task => {
 				if (task.id === id) {
 					task.completedAt = new Date().toISOString()
+					const taskElement = document.getElementById(task.id)
+					taskElement.classList.add('completed')
 				}
 				return task
 			})
@@ -126,6 +129,14 @@ function renderTasksList() {
 			saveAndRender()
 		})
 
+		if (task.completedAt !== null) {
+			const actionsElement = taskTemplate.querySelector('[data-task-actions]')
+			actionsElement.firstElementChild.remove()
+			const completedAtElement = document.createElement('span')
+			completedAtElement.textContent = `Completed at ${new Date(task.completedAt).toLocaleString()}`
+			actionsElement.insertBefore(completedAtElement, actionsElement.firstChild)
+			actionsElement.style.color = 'rgb(30, 234, 0)'
+		}
 		tasksListElement.appendChild(taskTemplate)
 	})
 }

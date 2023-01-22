@@ -66,6 +66,10 @@ main {
 	padding: 0.5rem;
 }
 
+.tasks-table .completed {
+	background-color: #5294eb;
+}
+
 .tasks-table [data-sortable] {
 	cursor: pointer;
 }
