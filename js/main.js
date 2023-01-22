@@ -98,6 +98,10 @@ function renderTasksList() {
 		tasksListElement.removeChild(tasksListElement.firstChild)
 	}
 
+	// set tasks count
+	const tasksCountElement = document.querySelector('[data-task-count]')
+	tasksCountElement.textContent = tasksList.length
+
 	tasksList.forEach(task => {
 		const taskTemplate = document.importNode(taskItemTemplate.content, true)
 		taskTemplate.querySelector('[data-task-id]').id = task.id

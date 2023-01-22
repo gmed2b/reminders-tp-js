@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&display=swap');
 @import './modal.css';
 
 *,
@@ -10,15 +10,28 @@
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Lato', sans-serif;
 	margin: 0;
 }
 
 header {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	gap: 1rem;
-	margin: 1rem 2rem;
-	padding: 1rem 0;
+	padding: 1rem 2rem;
+	background-color: #5294eb;
+}
+
+header .title {
+	color: #fff;
+	margin: 0;
+	margin-bottom: 0.5rem;
+}
+header .remaining-tasks {
+	font-size: 1.2rem;
+	font-weight: lighter;
+	color: #bcd6f8;
 }
 
 main {
@@ -27,26 +40,32 @@ main {
 
 .btn {
 	display: inline-flex;
-	padding: 0.3rem 0.5rem;
+	padding: 0.5rem 0.8rem;
+	font-size: 1rem;
+	border: none;
+	outline: none;
+	background-color: #dcdde1;
+}
+.btn:hover {
+	background-color: #c5cadb;
+}
+.btn.success {
+	background-color: #11c15b;
+	color: white;
+}
+.btn.success:hover {
+	background-color: #13a851;
+}
+.btn.secondary {
+	background-color: #95c3ff;
+	color: white;
+}
+.btn.secondary:hover {
+	background-color: #7aa3da;
 }
 
 .btn svg {
 	pointer-events: none;
-}
-
-.tasks-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem;
-	background-color: #dcdde1;
-}
-.tasks-header .title {
-	margin: 0;
-}
-.tasks-header .remaining-tasks {
-	font-weight: lighter;
-	color: #718093;
 }
 
 .tasks-table {
@@ -60,6 +79,10 @@ main {
 
 .tasks-table thead {
 	background-color: #dcdde1;
+}
+
+.tasks-table thead th {
+	padding: 0.5rem;
 }
 
 .tasks-table tbody tr td {

@@ -73,7 +73,7 @@
 }
 
 .modal-form .form-item label {
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 	font-weight: bold;
 }
 
@@ -83,6 +83,7 @@
 	padding: 0.5rem;
 	border: 1px solid #222;
 	border-radius: 0.25rem;
+	font-family: 'Lato', sans-serif;
 }
 
 .modal-footer {
