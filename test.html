@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./todolist.css" rel="stylesheet" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Ma todo list</h1>
+
+  <h2>Ajouter un todo</h2>
+  <form id="todo-form">
+    <input type="text" name="titre" placeholder="Titre" />
+    <input type="text" name="description" placeholder="Description" />
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Ma todo</h2>
+  <div>
+    <div class="row" id="header">
+      <p>Titre</p>
+      <p>Description</p>
+      <p>Date de création</p>
+      <p>Date de traitement</p>
+      <div></div>
+    </div>
+    <div id="list-body">
+    </div>
+  </div>
+</body>
+<script>
+  const myForm = document.querySelector("#todo-form");
+  const listBody = document.querySelector("#list-body");
+  const todos = [];
+
+
+  const generateTodo = (todo) => `
+        <p>${todo.titre}</p>
+        <p>${todo.description}</p>
+        <p>${todo.dateDeCreation.toLocaleString()}</p>
+        <p>${todo.dateDeTraitement ? todo.dateDeTraitement.toLocaleString() : ""}</p>
+        <div>
+            <button onclick="endTodo(${todo.id})">Traité</button>
+            <button onclick="deleteTodo(${todo.id})">Supprimer</button>
+        </div>`;
+
+  myForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const todo = {
+      titre: formData.get("titre"),
+      description: formData.get("description"),
+      dateDeCreation: new Date(),
+      dateDeTraitement: null,
+      id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 0
+    };
+
+    todos.push(todo);
+
+    listBody.innerHTML = listBody.innerHTML + `<div class="row" id="todo-${todo.id}">${generateTodo(todo)}</div>`;
+
+
+  });
+
+
+  function endTodo(todoId) {
+    const index = todos.findIndex(todo => todo.id == todoId);
+
+    if (index > -1) {
+      todos[index].dateDeTraitement = new Date();
+      const todoLine = document.querySelector("#todo-" + todoId).innerHTML = generateTodo(todos[index]);
+    }
+  }
+
+  function deleteTodo(todoId) {
+    const index = todos.findIndex(todo => todo.id == todoId);
+
+    if (index > -1) {
+      todos.splice(index, 1);
+      document.getElementById("todo-" + todoId).remove();
+    }
+  }
+</script>
+
+</html>

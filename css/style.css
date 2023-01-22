@@ -30,6 +30,10 @@ main {
 	padding: 0.3rem 0.5rem;
 }
 
+.btn svg {
+	pointer-events: none;
+}
+
 .tasks-header {
 	display: flex;
 	justify-content: space-between;
@@ -60,6 +64,53 @@ main {
 
 .tasks-table tbody tr td {
 	padding: 0.5rem;
+}
+
+.tasks-table [data-sortable] {
+	cursor: pointer;
+}
+.tasks-table [data-sortable]::after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 0.25rem;
+	vertical-align: middle;
+	border-top: 0.3em solid;
+	border-right: 0.3em solid transparent;
+	border-bottom: 0em;
+	border-left: 0.3em solid transparent;
+}
+.tasks-table [data-sortable].active {
+	color: #5294eb;
+}
+.tasks-table [data-sortable].active.asc::after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 0.25rem;
+	vertical-align: middle;
+	border-top: 0.3em solid;
+	border-right: 0.3em solid transparent;
+	border-bottom: 0em;
+	border-left: 0.3em solid transparent;
+}
+.tasks-table [data-sortable]:hover {
+	color: #718093;
+}
+.tasks-table [data-sortable].desc::after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 0.25rem;
+	margin-bottom: 0.5rem;
+	vertical-align: middle;
+	border-top: 0.3em solid transparent;
+	border-right: 0.3em solid transparent;
+	border-bottom: 0.3em solid;
+	border-left: 0.3em solid transparent;
 }
 
 /* .task-list {

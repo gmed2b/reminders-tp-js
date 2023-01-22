@@ -32,3 +32,5 @@ const closeModal = modal => {
 	modal.classList.remove('active')
 	overlayElement.classList.remove('active')
 }
+
+export { openModal, closeModal }
